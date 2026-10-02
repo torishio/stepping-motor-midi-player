@@ -1,0 +1,134 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1150 680" font-family="Consolas, 'Courier New', monospace">
+  <rect x="0" y="0" width="1150" height="680" fill="#ffffff"/>
+
+  <text x="575" y="30" text-anchor="middle" font-size="20" font-weight="bold" fill="#111111">DIY wiring (no custom PCB) -- 1 channel</text>
+  <text x="575" y="50" text-anchor="middle" font-size="13" fill="#666666">Arduino Pro Micro + A4988 carrier + bipolar stepper + external 12V supply</text>
+
+  <!-- ================= Arduino box ================= -->
+  <rect x="40" y="100" width="210" height="450" rx="6" fill="#f5f5f0" stroke="#222222" stroke-width="2"/>
+  <text x="145" y="124" text-anchor="middle" font-size="15" font-weight="bold" fill="#111111">Arduino Pro Micro</text>
+
+  <!-- USB note -->
+  <line x1="10" y1="140" x2="40" y2="140" stroke="#222222" stroke-width="2"/>
+  <rect x="2" y="132" width="14" height="16" fill="none" stroke="#222222" stroke-width="1.5"/>
+  <text x="18" y="112" font-size="11" fill="#555555">USB &#8594; PC</text>
+  <text x="18" y="155" font-size="11" fill="#555555">(MIDI over USB)</text>
+
+  <!-- Arduino right-side pins -->
+  <g font-size="14" fill="#111111">
+    <circle cx="250" cy="150" r="4" fill="#111111"/><text x="236" y="146" text-anchor="end">D4</text>
+    <circle cx="250" cy="200" r="4" fill="#111111"/><text x="236" y="196" text-anchor="end">D5</text>
+    <circle cx="250" cy="250" r="4" fill="#111111"/><text x="236" y="246" text-anchor="end">D6</text>
+    <circle cx="250" cy="300" r="4" fill="#111111"/><text x="236" y="296" text-anchor="end">A0</text>
+    <circle cx="250" cy="350" r="4" fill="#111111"/><text x="236" y="346" text-anchor="end">A1</text>
+    <circle cx="250" cy="400" r="4" fill="#111111"/><text x="236" y="396" text-anchor="end">A2</text>
+    <circle cx="250" cy="460" r="4" fill="#111111"/><text x="236" y="456" text-anchor="end">VCC (5V)</text>
+    <circle cx="250" cy="510" r="4" fill="#111111"/><text x="236" y="506" text-anchor="end">GND</text>
+  </g>
+
+  <!-- ================= A4988 box ================= -->
+  <rect x="480" y="100" width="200" height="450" rx="6" fill="#f5f5f0" stroke="#222222" stroke-width="2"/>
+  <text x="580" y="124" text-anchor="middle" font-size="15" font-weight="bold" fill="#111111">A4988 carrier</text>
+
+  <!-- A4988 left-side pins (facing Arduino) -->
+  <g font-size="14" fill="#111111">
+    <circle cx="480" cy="150" r="4" fill="#111111"/><text x="494" y="146">STEP</text>
+    <circle cx="480" cy="200" r="4" fill="#111111"/><text x="494" y="196">DIR</text>
+    <circle cx="480" cy="250" r="4" fill="#111111"/><text x="494" y="246">EN</text>
+    <circle cx="480" cy="300" r="4" fill="#111111"/><text x="494" y="296">MS1</text>
+    <circle cx="480" cy="350" r="4" fill="#111111"/><text x="494" y="346">MS2</text>
+    <circle cx="480" cy="400" r="4" fill="#111111"/><text x="494" y="396">MS3</text>
+    <circle cx="480" cy="460" r="4" fill="#111111"/><text x="494" y="456">VDD</text>
+    <circle cx="480" cy="510" r="4" fill="#111111"/><text x="494" y="506">GND</text>
+  </g>
+
+  <!-- Arduino -> A4988 wires -->
+  <g stroke="#1a56db" stroke-width="2.2">
+    <line x1="254" y1="150" x2="476" y2="150"/>
+    <line x1="254" y1="200" x2="476" y2="200"/>
+    <line x1="254" y1="250" x2="476" y2="250"/>
+    <line x1="254" y1="300" x2="476" y2="300"/>
+    <line x1="254" y1="350" x2="476" y2="350"/>
+    <line x1="254" y1="400" x2="476" y2="400"/>
+  </g>
+  <line x1="254" y1="460" x2="476" y2="460" stroke="#c81e3a" stroke-width="2.2"/>
+  <line x1="254" y1="510" x2="476" y2="510" stroke="#444444" stroke-width="2.2"/>
+  <text x="365" y="243" text-anchor="middle" font-size="10" fill="#1a56db">EN held LOW</text>
+
+  <!-- RST/SLP jumper, drawn hanging off the bottom of the A4988 box -->
+  <path d="M 540 550 v 25 h 60 v -25" fill="none" stroke="#777777" stroke-width="2"/>
+  <circle cx="540" cy="550" r="4" fill="#111111"/>
+  <circle cx="600" cy="550" r="4" fill="#111111"/>
+  <text x="540" y="545" text-anchor="middle" font-size="12" fill="#111111">RST</text>
+  <text x="600" y="545" text-anchor="middle" font-size="12" fill="#111111">SLP</text>
+  <text x="570" y="595" text-anchor="middle" font-size="11" fill="#555555">jumper RST&#8596;SLP together</text>
+  <text x="570" y="610" text-anchor="middle" font-size="11" fill="#555555">(no Arduino pin needed)</text>
+
+  <!-- A4988 right-side pins (facing motor + power) -->
+  <g font-size="14" fill="#111111">
+    <circle cx="680" cy="170" r="4" fill="#111111"/><text x="666" y="166" text-anchor="end">VMOT</text>
+    <circle cx="680" cy="230" r="4" fill="#111111"/><text x="666" y="226" text-anchor="end">GND</text>
+    <circle cx="680" cy="330" r="4" fill="#111111"/><text x="666" y="326" text-anchor="end">1A</text>
+    <circle cx="680" cy="390" r="4" fill="#111111"/><text x="666" y="386" text-anchor="end">1B</text>
+    <circle cx="680" cy="450" r="4" fill="#111111"/><text x="666" y="446" text-anchor="end">2A</text>
+    <circle cx="680" cy="510" r="4" fill="#111111"/><text x="666" y="506" text-anchor="end">2B</text>
+  </g>
+
+  <!-- VMOT/GND run right to the power supply, with 2 caps tapped on along the way -->
+  <line x1="684" y1="170" x2="950" y2="170" stroke="#c81e3a" stroke-width="2.2"/>
+  <line x1="684" y1="230" x2="950" y2="230" stroke="#444444" stroke-width="2.2"/>
+
+  <!-- 100uF cap -->
+  <g>
+    <line x1="760" y1="170" x2="760" y2="196" stroke="#c81e3a" stroke-width="2"/>
+    <line x1="760" y1="204" x2="760" y2="230" stroke="#444444" stroke-width="2"/>
+    <line x1="748" y1="196" x2="772" y2="196" stroke="#111111" stroke-width="2.5"/>
+    <path d="M 748 204 Q 760 210 772 204" fill="none" stroke="#111111" stroke-width="2.5"/>
+    <text x="760" y="146" text-anchor="middle" font-size="12" fill="#333333">100&#956;F</text>
+    <text x="760" y="252" text-anchor="middle" font-size="10" fill="#777777">bulk</text>
+  </g>
+
+  <!-- 100nF cap -->
+  <g>
+    <line x1="820" y1="170" x2="820" y2="196" stroke="#c81e3a" stroke-width="2"/>
+    <line x1="820" y1="196" x2="820" y2="230" stroke="#444444" stroke-width="2"/>
+    <line x1="808" y1="196" x2="832" y2="196" stroke="#111111" stroke-width="2.5"/>
+    <line x1="808" y1="202" x2="832" y2="202" stroke="#111111" stroke-width="2.5"/>
+    <text x="820" y="146" text-anchor="middle" font-size="12" fill="#333333">100nF</text>
+    <text x="820" y="252" text-anchor="middle" font-size="10" fill="#777777">noise</text>
+  </g>
+
+  <!-- Power supply box -->
+  <rect x="950" y="100" width="150" height="150" rx="6" fill="#fdf2f2" stroke="#222222" stroke-width="2"/>
+  <text x="1025" y="124" text-anchor="middle" font-size="13" font-weight="bold" fill="#111111">external supply</text>
+  <text x="1025" y="140" text-anchor="middle" font-size="11" fill="#666666">(match your motor's rated V)</text>
+  <text x="975" y="174" font-size="14" fill="#c81e3a">+</text>
+  <text x="975" y="234" font-size="14" fill="#444444">&#8595;</text>
+
+  <!-- Motor coil wires -->
+  <line x1="684" y1="330" x2="950" y2="330" stroke="#1a56db" stroke-width="2.2"/>
+  <line x1="684" y1="390" x2="950" y2="390" stroke="#1a56db" stroke-width="2.2"/>
+  <line x1="684" y1="450" x2="950" y2="450" stroke="#1a56db" stroke-width="2.2"/>
+  <line x1="684" y1="510" x2="950" y2="510" stroke="#1a56db" stroke-width="2.2"/>
+
+  <!-- Motor box -->
+  <rect x="950" y="300" width="150" height="250" rx="6" fill="#f0f4fb" stroke="#222222" stroke-width="2"/>
+  <text x="1025" y="324" text-anchor="middle" font-size="14" font-weight="bold" fill="#111111">stepper motor</text>
+  <text x="1025" y="340" text-anchor="middle" font-size="10" fill="#666666">(4-wire bipolar / NEMA17)</text>
+  <circle cx="1025" cy="420" r="55" fill="none" stroke="#333333" stroke-width="2"/>
+  <text x="1025" y="426" text-anchor="middle" font-size="13" fill="#333333">coil A / coil B</text>
+  <text x="966" y="334" font-size="12" fill="#111111">1A</text>
+  <text x="966" y="394" font-size="12" fill="#111111">1B</text>
+  <text x="966" y="454" font-size="12" fill="#111111">2A</text>
+  <text x="966" y="514" font-size="12" fill="#111111">2B</text>
+
+  <!-- Common ground note -->
+  <text x="575" y="645" text-anchor="middle" font-size="12" fill="#555555">Arduino GND, A4988 GND (both pins), cap GND leg, and the supply's GND/&#8211; are all ONE common ground -- tie them together.</text>
+
+  <!-- Legend -->
+  <g font-size="12" fill="#333333">
+    <line x1="40" y1="610" x2="70" y2="610" stroke="#1a56db" stroke-width="2.2"/><text x="76" y="614">signal / coil</text>
+    <line x1="190" y1="610" x2="220" y2="610" stroke="#c81e3a" stroke-width="2.2"/><text x="226" y="614">power (+)</text>
+    <line x1="320" y1="610" x2="350" y2="610" stroke="#444444" stroke-width="2.2"/><text x="356" y="614">ground</text>
+  </g>
+</svg>

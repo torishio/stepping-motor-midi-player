@@ -39,6 +39,18 @@ STEPピンをMIDIノートの音程とぴったり同じ周波数でパカパカ
 - A4988側のRSTとSLPは自分同士でジャンパーするだけ、Arduino側のピンは要らない
 - VMOT・コイル出力(1A/1B/2A/2B)・外部+12Vは図から省略(モーター/電源側の配線なので)
 
+### 専用基板を使わず自分で組む場合
+
+基板を起こさずブレッドボードとかで直結したい人向けに、電源・コンデンサ・モーターまで全部含めた回路図も置いてある。
+
+![DIY配線の全体回路図](docs/diy-full-schematic.svg)
+
+- Arduino側のピンは上と同じ(D4/D5/D6/A0/A1/A2/VCC/GND)
+- VMOT-GND間に100&micro;F(低周波の電流供給用)と100nF(PWMノイズ吸収用)を並列で入れる — これが無いとモーターがガキゴカ鳴りやすい
+- 外部電源は使うモーターの定格電圧に合わせる(12V用モーターなら12V)
+- A4988の1A/1B/2A/2Bをモーターの4本のコイル線に(どっちが1A/1Bかは実際に回してみて逆なら入れ替えればOK)
+- Arduino GND・A4988のGND(2本とも)・コンデンサのGND足・外部電源のGND(-)は全部同じ1本のグラウンドとしてつなぐ
+
 ### 用意するもの
 
 - Arduino Pro Micro互換ボード(ATmega32U4, 5V/16MHz)をチャンネル数分
@@ -93,6 +105,18 @@ Here's how one channel's wiring looks. Every other channel is identical.
 - VCC→VDD, GND→GND
 - RST and SLP just jumper to each other on the A4988 — no Arduino pin needed
 - VMOT, the coil outputs (1A/1B/2A/2B), and the external +12V are left out of the diagram since that's motor/power wiring, not Arduino wiring
+
+### Building it without the custom board
+
+If you'd rather wire this up on a breadboard or protoboard instead of ordering the PCB, here's the full circuit — power supply, decoupling caps, and motor included.
+
+![Full DIY schematic](docs/diy-full-schematic.svg)
+
+- Arduino pins are the same as above (D4/D5/D6/A0/A1/A2/VCC/GND)
+- Put a 100&micro;F (bulk current) and a 100nF (PWM noise) cap in parallel across VMOT-GND — skip these and the motor tends to buzz
+- Match the external supply voltage to your motor's rating (12V motor → 12V supply)
+- Wire A4988's 1A/1B/2A/2B to the motor's 4 coil leads (if it spins the wrong way or sounds off, just swap a pair)
+- Arduino GND, both A4988 GND pins, the cap's ground leg, and the supply's GND/– all need to be the same single ground net
 
 ### What you'll need
 
@@ -149,6 +173,18 @@ MIT — see `LICENSE`.
 - A4988上的RST和SLP自己接在一起就行,不用占Arduino的引脚
 - VMOT、线圈输出(1A/1B/2A/2B)、外部+12V这些电机/电源侧的接线图里没画
 
+### 不用专用板,自己动手接
+
+想用面包板之类的东西直接接线、不打板的话,这里有张包含电源、滤波电容、电机的完整电路图。
+
+![DIY完整电路图](docs/diy-full-schematic.svg)
+
+- Arduino这边的引脚跟上面一样(D4/D5/D6/A0/A1/A2/VCC/GND)
+- VMOT-GND之间并联一个100&micro;F(供大电流用)和一个100nF(吸收PWM噪声用)——不加这俩电机容易嗡嗡响
+- 外部电源电压要跟电机的额定电压匹配(12V电机就配12V电源)
+- 把A4988的1A/1B/2A/2B接到电机的4根线圈引线上(转反了或者声音不对就随便换一对线试试)
+- Arduino的GND、A4988的两个GND引脚、电容的接地脚、电源的GND/-,这些都得接成同一个地
+
 ### 得准备点啥
 
 - 每个声部一块Arduino Pro Micro兼容板(ATmega32U4,5V/16MHz)
@@ -203,6 +239,18 @@ A4988의 STEP 핀을 MIDI 노트 음높이랑 정확히 같은 주파수로 토�
 - VCC→VDD, GND→GND
 - A4988의 RST랑 SLP는 서로 점퍼만 해주면 됨, Arduino 핀은 필요 없음
 - VMOT, 코일 출력(1A/1B/2A/2B), 외부 +12V는 모터/전원 쪽 배선이라 그림에서는 뺐음
+
+### 전용 보드 없이 직접 조립하는 경우
+
+PCB 주문 대신 브레드보드 같은 데 직접 배선하고 싶다면, 전원이랑 디커플링 커패시터, 모터까지 다 포함한 전체 회로도도 준비해놨다.
+
+![DIY 전체 회로도](docs/diy-full-schematic.svg)
+
+- Arduino 핀은 위랑 똑같음(D4/D5/D6/A0/A1/A2/VCC/GND)
+- VMOT-GND 사이에 100&micro;F(대전류용)랑 100nF(PWM 노이즈 제거용) 커패시터를 병렬로 — 이거 없으면 모터가 윙윙거리기 쉬움
+- 외부 전원은 쓰는 모터 정격 전압에 맞추기(12V 모터면 12V 전원)
+- A4988의 1A/1B/2A/2B를 모터 코일선 4개에 연결(방향이 반대거나 소리가 이상하면 한 쌍만 바꿔 끼워보면 됨)
+- Arduino GND, A4988의 GND 두 개, 커패시터 접지 다리, 전원의 GND/- 는 전부 같은 그라운드 하나로 묶어야 함
 
 ### 필요한 것
 
