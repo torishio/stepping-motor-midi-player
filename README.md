@@ -50,6 +50,7 @@ STEPピンをMIDIノートの音程とぴったり同じ周波数でパカパカ
 - 外部電源は使うモーターの定格電圧に合わせる(12V用モーターなら12V)
 - A4988の1A/1B/2A/2Bをモーターの4本のコイル線に(どっちが1A/1Bかは実際に回してみて逆なら入れ替えればOK)
 - Arduino GND・A4988のGND(2本とも)・コンデンサのGND足・外部電源のGND(-)は全部同じ1本のグラウンドとしてつなぐ
+- A4988基板上のトリマ(Vref)で電流制限を調整するのを忘れずに。Pololu版(Rsense=0.1&Omega;)なら **Vref=0.8Vで1A制限** になる感じがちょうどいい。ここを合わせないとモーターが熱くなりすぎたり、逆に力が出なかったりする
 
 ### 用意するもの
 
@@ -116,6 +117,7 @@ If you'd rather wire this up on a breadboard or protoboard instead of ordering t
 - Put a 100&micro;F (bulk current) and a 100nF (PWM noise) cap in parallel across VMOT-GND — skip these and the motor tends to buzz
 - Match the external supply voltage to your motor's rating (12V motor → 12V supply)
 - Wire A4988's 1A/1B/2A/2B to the motor's 4 coil leads (if it spins the wrong way or sounds off, just swap a pair)
+- Don't forget to set the current limit via the A4988's onboard trimmer (Vref). For the Pololu board (Rsense = 0.1Ω), **Vref ≈ 0.8V gives roughly a 1A limit** — a good starting point. Skip this and the motor can overheat, or come out too weak.
 - Arduino GND, both A4988 GND pins, the cap's ground leg, and the supply's GND/– all need to be the same single ground net
 
 ### What you'll need
@@ -183,6 +185,7 @@ MIT — see `LICENSE`.
 - VMOT-GND之间并联一个100&micro;F(供大电流用)和一个100nF(吸收PWM噪声用)——不加这俩电机容易嗡嗡响
 - 外部电源电压要跟电机的额定电压匹配(12V电机就配12V电源)
 - 把A4988的1A/1B/2A/2B接到电机的4根线圈引线上(转反了或者声音不对就随便换一对线试试)
+- 别忘了用A4988板上的电位器调电流限制(Vref)。Pololu版(Rsense=0.1Ω)的话,**Vref=0.8V大概对应1A的限制**,这个值挺合适的。不调这个电机容易发热,或者没劲。
 - Arduino的GND、A4988的两个GND引脚、电容的接地脚、电源的GND/-,这些都得接成同一个地
 
 ### 得准备点啥
@@ -250,6 +253,7 @@ PCB 주문 대신 브레드보드 같은 데 직접 배선하고 싶다면, 전�
 - VMOT-GND 사이에 100&micro;F(대전류용)랑 100nF(PWM 노이즈 제거용) 커패시터를 병렬로 — 이거 없으면 모터가 윙윙거리기 쉬움
 - 외부 전원은 쓰는 모터 정격 전압에 맞추기(12V 모터면 12V 전원)
 - A4988의 1A/1B/2A/2B를 모터 코일선 4개에 연결(방향이 반대거나 소리가 이상하면 한 쌍만 바꿔 끼워보면 됨)
+- A4988 보드의 트리머(Vref)로 전류 제한 맞추는 것도 잊지 말기. Pololu 보드(Rsense=0.1Ω)라면 **Vref=0.8V가 대략 1A 제한**이라 딱 적당하다. 이거 안 맞추면 모터가 너무 뜨거워지거나 힘이 안 나온다.
 - Arduino GND, A4988의 GND 두 개, 커패시터 접지 다리, 전원의 GND/- 는 전부 같은 그라운드 하나로 묶어야 함
 
 ### 필요한 것
