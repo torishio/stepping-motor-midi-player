@@ -27,6 +27,18 @@ STEPピンをMIDIノートの音程とぴったり同じ周波数でパカパカ
   - **`BOM.csv`** → 部品リスト。
   - **`digikey_order.csv`** → Digikeyにそのままインポートできる注文リスト。
 
+### Arduino⇔A4988の配線
+
+1チャンネル分の結線はこんな感じ。他のチャンネルも同じ。
+
+![Arduino Pro MicroとA4988の配線図](docs/arduino-a4988-wiring.svg)
+
+- D4→STEP、D5→DIR、D6→EN(常時LOWでドライバON)
+- A0→MS1、A1→MS2、A2→MS3(マイクロステップの切り替え)
+- VCC→VDD、GND→GND
+- A4988側のRSTとSLPは自分同士でジャンパーするだけ、Arduino側のピンは要らない
+- VMOT・コイル出力(1A/1B/2A/2B)・外部+12Vは図から省略(モーター/電源側の配線なので)
+
 ### 用意するもの
 
 - Arduino Pro Micro互換ボード(ATmega32U4, 5V/16MHz)をチャンネル数分
@@ -69,6 +81,18 @@ If you toggle an A4988's STEP pin at exactly the frequency of a MIDI note's pitc
   - `stp-motr-2ch-100x50.kicad_pro` / `.kicad_sch` / `.kicad_pcb` — the actual KiCad files if you want to look around or make changes. The custom footprints/symbols are bundled in `stp_motr.pretty/` and `stp_motr.kicad_sym` so it just opens.
   - **`BOM.csv`** — the parts list.
   - **`digikey_order.csv`** — drop this straight into Digikey's order tool.
+
+### Arduino⇔A4988 wiring
+
+Here's how one channel's wiring looks. Every other channel is identical.
+
+![Arduino Pro Micro to A4988 wiring diagram](docs/arduino-a4988-wiring.svg)
+
+- D4→STEP, D5→DIR, D6→EN (held LOW all the time to keep the driver on)
+- A0→MS1, A1→MS2, A2→MS3 (microstep selection)
+- VCC→VDD, GND→GND
+- RST and SLP just jumper to each other on the A4988 — no Arduino pin needed
+- VMOT, the coil outputs (1A/1B/2A/2B), and the external +12V are left out of the diagram since that's motor/power wiring, not Arduino wiring
 
 ### What you'll need
 
@@ -113,6 +137,18 @@ MIT — see `LICENSE`.
   - **`BOM.csv`** — 物料清单。
   - **`digikey_order.csv`** — 直接丢进Digikey的下单工具就行。
 
+### Arduino与A4988的接线
+
+一个声部的接线大概就是这样,其他声部都一样。
+
+![Arduino Pro Micro与A4988的接线图](docs/arduino-a4988-wiring.svg)
+
+- D4→STEP,D5→DIR,D6→EN(一直拉LOW让驱动器保持开启)
+- A0→MS1,A1→MS2,A2→MS3(切换微步模式)
+- VCC→VDD,GND→GND
+- A4988上的RST和SLP自己接在一起就行,不用占Arduino的引脚
+- VMOT、线圈输出(1A/1B/2A/2B)、外部+12V这些电机/电源侧的接线图里没画
+
 ### 得准备点啥
 
 - 每个声部一块Arduino Pro Micro兼容板(ATmega32U4,5V/16MHz)
@@ -155,6 +191,18 @@ A4988의 STEP 핀을 MIDI 노트 음높이랑 정확히 같은 주파수로 토�
   - `stp-motr-2ch-100x50.kicad_pro` / `.kicad_sch` / `.kicad_pcb` — 회로 들여다보거나 고치고 싶으면 이 KiCad 파일들. 커스텀 풋프린트/심볼도 `stp_motr.pretty/`랑 `stp_motr.kicad_sym`에 같이 들어있어서 그냥 열면 된다.
   - **`BOM.csv`** — 부품 목록.
   - **`digikey_order.csv`** — Digikey BOM Manager에 그냥 넣으면 되는 주문 리스트.
+
+### Arduino&#8596;A4988 배선
+
+채널 하나의 배선은 이렇게 생겼다. 다른 채널도 다 똑같다.
+
+![Arduino Pro Micro와 A4988 배선도](docs/arduino-a4988-wiring.svg)
+
+- D4→STEP, D5→DIR, D6→EN (드라이버를 계속 켜두려고 항상 LOW)
+- A0→MS1, A1→MS2, A2→MS3 (마이크로스텝 모드 선택)
+- VCC→VDD, GND→GND
+- A4988의 RST랑 SLP는 서로 점퍼만 해주면 됨, Arduino 핀은 필요 없음
+- VMOT, 코일 출력(1A/1B/2A/2B), 외부 +12V는 모터/전원 쪽 배선이라 그림에서는 뺐음
 
 ### 필요한 것
 

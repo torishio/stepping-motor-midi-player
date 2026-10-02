@@ -1,0 +1,105 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 920 600" font-family="Consolas, 'Courier New', monospace">
+  <rect x="0" y="0" width="920" height="600" fill="#ffffff"/>
+
+  <text x="460" y="34" text-anchor="middle" font-size="22" font-weight="bold" fill="#111111">Arduino Pro Micro &#8596; A4988 wiring (1ch)</text>
+
+  <!-- Arduino box -->
+  <rect x="60" y="70" width="230" height="420" rx="6" fill="#f5f5f0" stroke="#222222" stroke-width="2"/>
+  <text x="175" y="98" text-anchor="middle" font-size="16" font-weight="bold" fill="#111111">Arduino Pro Micro</text>
+
+  <!-- A4988 box -->
+  <rect x="630" y="70" width="230" height="420" rx="6" fill="#f5f5f0" stroke="#222222" stroke-width="2"/>
+  <text x="745" y="98" text-anchor="middle" font-size="16" font-weight="bold" fill="#111111">A4988 driver</text>
+
+  <!-- pin rows: y positions -->
+  <!-- D4 -> STEP -->
+  <g>
+    <circle cx="290" cy="140" r="4" fill="#111111"/>
+    <text x="275" y="136" text-anchor="end" font-size="15" fill="#111111">D4</text>
+    <circle cx="630" cy="140" r="4" fill="#111111"/>
+    <text x="645" y="136" font-size="15" fill="#111111">STEP</text>
+    <line x1="294" y1="140" x2="626" y2="140" stroke="#1a56db" stroke-width="2.5"/>
+  </g>
+
+  <!-- D5 -> DIR -->
+  <g>
+    <circle cx="290" cy="185" r="4" fill="#111111"/>
+    <text x="275" y="181" text-anchor="end" font-size="15" fill="#111111">D5</text>
+    <circle cx="630" cy="185" r="4" fill="#111111"/>
+    <text x="645" y="181" font-size="15" fill="#111111">DIR</text>
+    <line x1="294" y1="185" x2="626" y2="185" stroke="#1a56db" stroke-width="2.5"/>
+  </g>
+
+  <!-- D6 -> EN -->
+  <g>
+    <circle cx="290" cy="230" r="4" fill="#111111"/>
+    <text x="275" y="226" text-anchor="end" font-size="15" fill="#111111">D6</text>
+    <circle cx="630" cy="230" r="4" fill="#111111"/>
+    <text x="645" y="226" font-size="15" fill="#111111">EN</text>
+    <text x="645" y="246" font-size="11" fill="#555555">(active-low, held LOW)</text>
+    <line x1="294" y1="230" x2="626" y2="230" stroke="#1a56db" stroke-width="2.5"/>
+  </g>
+
+  <!-- A0 -> MS1 -->
+  <g>
+    <circle cx="290" cy="290" r="4" fill="#111111"/>
+    <text x="275" y="286" text-anchor="end" font-size="15" fill="#111111">A0</text>
+    <circle cx="630" cy="290" r="4" fill="#111111"/>
+    <text x="645" y="286" font-size="15" fill="#111111">MS1</text>
+    <line x1="294" y1="290" x2="626" y2="290" stroke="#1a56db" stroke-width="2.5"/>
+  </g>
+
+  <!-- A1 -> MS2 -->
+  <g>
+    <circle cx="290" cy="335" r="4" fill="#111111"/>
+    <text x="275" y="331" text-anchor="end" font-size="15" fill="#111111">A1</text>
+    <circle cx="630" cy="335" r="4" fill="#111111"/>
+    <text x="645" y="331" font-size="15" fill="#111111">MS2</text>
+    <line x1="294" y1="335" x2="626" y2="335" stroke="#1a56db" stroke-width="2.5"/>
+  </g>
+
+  <!-- A2 -> MS3 -->
+  <g>
+    <circle cx="290" cy="380" r="4" fill="#111111"/>
+    <text x="275" y="376" text-anchor="end" font-size="15" fill="#111111">A2</text>
+    <circle cx="630" cy="380" r="4" fill="#111111"/>
+    <text x="645" y="376" font-size="15" fill="#111111">MS3</text>
+    <line x1="294" y1="380" x2="626" y2="380" stroke="#1a56db" stroke-width="2.5"/>
+  </g>
+
+  <!-- VCC -> VDD (power, red) -->
+  <g>
+    <circle cx="290" cy="430" r="4" fill="#111111"/>
+    <text x="275" y="426" text-anchor="end" font-size="15" fill="#111111">VCC (5V)</text>
+    <circle cx="630" cy="430" r="4" fill="#111111"/>
+    <text x="645" y="426" font-size="15" fill="#111111">VDD</text>
+    <line x1="294" y1="430" x2="626" y2="430" stroke="#c81e3a" stroke-width="2.5"/>
+  </g>
+
+  <!-- GND -> GND -->
+  <g>
+    <circle cx="290" cy="465" r="4" fill="#111111"/>
+    <text x="275" y="461" text-anchor="end" font-size="15" fill="#111111">GND</text>
+    <circle cx="630" cy="465" r="4" fill="#111111"/>
+    <text x="645" y="461" font-size="15" fill="#111111">GND</text>
+    <line x1="294" y1="465" x2="626" y2="465" stroke="#444444" stroke-width="2.5"/>
+  </g>
+
+  <!-- RST/SLP self-jumper note on the A4988 side, below the box -->
+  <g>
+    <text x="745" y="515" text-anchor="middle" font-size="13" fill="#555555">RST &#8596; SLP jumpered together on the A4988</text>
+    <text x="745" y="531" text-anchor="middle" font-size="13" fill="#555555">(no Arduino pin needed)</text>
+  </g>
+
+  <!-- Legend -->
+  <g>
+    <line x1="60" y1="515" x2="90" y2="515" stroke="#1a56db" stroke-width="2.5"/>
+    <text x="96" y="519" font-size="12" fill="#333333">signal</text>
+    <line x1="150" y1="515" x2="180" y2="515" stroke="#c81e3a" stroke-width="2.5"/>
+    <text x="186" y="519" font-size="12" fill="#333333">power</text>
+    <line x1="240" y1="515" x2="270" y2="515" stroke="#444444" stroke-width="2.5"/>
+    <text x="276" y="519" font-size="12" fill="#333333">ground</text>
+  </g>
+
+  <text x="460" y="575" text-anchor="middle" font-size="11" fill="#777777">VMOT / motor coil (1A,1B,2A,2B) / external +12V wiring omitted -- Arduino-side only</text>
+</svg>
